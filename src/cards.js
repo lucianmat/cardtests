@@ -197,14 +197,11 @@ class CardDeck extends Uint8Array {
         if (!_isStraigth && _hasA) {
             _isStraigth = true;
             // try 10 A J sequence
-            for(var i =0;i<5;i++) {
-                arr[i] = Math.floor(arguments[i][0] / 4);
-                if (arr[i]>9) {
-                    arr[i] = arr[i] + 1; 
-                } else if (!arr[i]) {
-                    arr[i] = 10;
+            for(var i =0;i<5;i++) 
+                if (!arr[i]) {
+                    arr[i] = 10; // try bigger sequence
                 }
-            }
+            
             arr.sort();
             for(var i =0;_isStraigth && i<4;i++) {
                 _isStraigth = _isStraigth && (arr[i] == arr[i+1] -1);
