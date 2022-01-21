@@ -1,0 +1,17 @@
+{
+  "name": "reevo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Lucian Mateescu",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^9.1.4"
+  },
+  "dependencies": {
+    "enum": "^3.0.4"
+  }
+}
