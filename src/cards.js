@@ -118,7 +118,7 @@ class CardDeck extends Uint8Array {
      * @returns {Card} card  
      */
     cardAt(idx) {
-        if (typeof idx != 'number' || idx<0 || idx >52 )
+        if (typeof idx != 'number' || idx<0 || idx >this.length )
             throw new Error('Invalid card index');
 
         return new Card(this[idx]);
