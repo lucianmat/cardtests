@@ -118,7 +118,7 @@ class CardDeck extends Uint8Array {
      * @returns {Card} card  
      */
     cardAt(idx) {
-        if (typeof idx != 'number' || idx<0 || idx >this.length )
+        if (typeof idx != 'number' || idx<0 || idx >52 )
             throw new Error('Invalid card index');
 
         return new Card(this[idx]);
@@ -170,8 +170,7 @@ class CardDeck extends Uint8Array {
      */
     static isStraight() {
         var _isStraigth = true,
-            arr = new Uint8Array(5),
-            _hasA = false;
+            arr = new Uint8Array(5);
 
         if (arguments.length != 5) {
             throw new Error('Call with 5 cards');
@@ -183,7 +182,6 @@ class CardDeck extends Uint8Array {
                 if (arr[i]>9) {
                     arr[i] = arr[i] + 1; 
                 }
-                _hasA = _hasA || (arr[i] == 0); // Has Ass`
              } else {
                  throw new Error('Argument ' + i + ' should be Card');
              }
@@ -194,14 +192,10 @@ class CardDeck extends Uint8Array {
             _isStraigth = _isStraigth && (arr[i] == arr[i+1] -1);
         }
 
-        if (!_isStraigth && _hasA) {
+        if (!_isStraigth && arr[0] ==0) {
             _isStraigth = true;
+            arr[0] = 10;
             // try 10 A J sequence
-            for(var i =0;i<5;i++) 
-                if (!arr[i]) {
-                    arr[i] = 10; // try bigger sequence
-                }
-            
             arr.sort();
             for(var i =0;_isStraigth && i<4;i++) {
                 _isStraigth = _isStraigth && (arr[i] == arr[i+1] -1);
